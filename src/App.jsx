@@ -7,7 +7,7 @@ function jsonDateReviver(key, value) {
 
 
 async function graphQLFetch(query, variables = {}) {
-  console.log('graphQL')
+  //console.log('graphQL')
 
   try {
     const response = await fetch('/graphql', {
@@ -51,8 +51,8 @@ function IssueTable(props) {
     <IssueRow key={issue.id} issue={issue} />
   );
  
-  console.log('test')
-  console.log(props.issues)
+  //.log('test')
+  //console.log(props.issues)
 
   return (
     <table className="bordered-table" hidden={props.isShow}>
@@ -97,7 +97,7 @@ class HomePage extends React.Component{
     }
     
     componentDidMount() {
-      console.log('ComponentDid')
+      //console.log('ComponentDid')
       this.loadData();
     }
 
@@ -139,14 +139,6 @@ class HomePage extends React.Component{
     handleDisplay() {
       this.setState({isAtHome: false});
       this.setState({isAtDisplay: true})
-      console.log(this.state.issues)
-      console.log(typeof(this.state.issues[1]))
-      // console.log(this.state.issues[0][0])
-      // console.log(this.state.issues[0].id)
-      // console.log(this.state.issues[0].keys)
-     // console.log(Object.keys(this.state.issues[0]))
-      // console.log(this.state.issues.length)
-
     }
     
     handleModify(){
@@ -173,7 +165,7 @@ class HomePage extends React.Component{
 
     //loaddata
     async loadData() {
-      console.log('load_data')
+      //console.log('load_data')
       const query = `query {
         issueList {
           id 
@@ -192,7 +184,7 @@ class HomePage extends React.Component{
     
     //write in data
     async createIssue(issue) {
-      console.log('createissue')
+      //console.log('createissue')
       const query = `mutation issueAdd($issue: IssueInputs!) {
         issueAdd(issue: $issue) {
           id
@@ -207,7 +199,7 @@ class HomePage extends React.Component{
 
     //delete data
     async deleteIssue(issue) {
-      console.log('deleteissue')
+      //console.log('deleteissue')
       const query = `mutation issueDelete($issue: IssueDelInputs!) {
         issueDelete(issue: $issue) {
           id
@@ -231,7 +223,6 @@ class HomePage extends React.Component{
       MDB = <Modify onClick={this.handleModify} isShow={!this.state.isAtHome}/>
       const BHPB = <Back2HomepageButton onClick={this.handleBack2Homepage} isShow={this.state.isAtHome} />
       const ADDG = <AddGuest count = {this.state.count} createIssue = {this.createIssue}addGuest = {this.addGuest} guestlist = {this.state.guestlist} availableSlots={this.state.availableSlots} isSubmitSuccess={this.state.isSubmitSuccess} handleSubmitSuccess={this.handleSubmitSuccess} isShow = {!this.state.isAtResearvation}/>
-      //const ST = <ShowTable guestlist={this.state.guestlist} issues={this.state.issues} isShow={!this.state.isAtDisplay}/>
       const MDG = <ModifyGuest guestlist={this.state.guestlist} deleteIssue = {this.deleteIssue} deleteGuest={this,this.deleteGuest} isSubmitSuccess={this.state.isSubmitSuccess} handleSubmitSuccess={this.handleSubmitSuccess} isShow={!this.state.isAtModify}/>
       return(
           <div>
@@ -339,27 +330,9 @@ class HomePage extends React.Component{
         super(props)
       }
       modify(){
-        // const guestlist = this.props.guestlist
-        // const serial_list = []
-        // for (var i=0; i<guestlist.length; i++)
-        // {
-        //     serial_list.push(Number(guestlist[i][0]))
-        // }
-  
         const serial_num = Number(this.serialnum.value.trim())
         const issue = {id:serial_num}
         this.props.deleteIssue(issue)
-        // let index = serial_list.indexOf(serial_num)
-        // let guestInf
-        // if(index == -1){
-        //     alert("No Matching Customer Reservation!")
-        //     this.props.handleSubmitSuccess(false)
-        // } else {
-        //     guestInf = guestlist[index];
-        //     this.props.deleteGuest(guestInf)
-        //     this.props.handleSubmitSuccess(true)
-        // }
-        // this.serialnum.value = ''
   
       }
       render(){
@@ -388,24 +361,6 @@ class HomePage extends React.Component{
        }
       var i = 0
       
-      // const arr = this.props.issues
-      // while(i<10){
-      //   console.log(i);
-      //   i++;
-      // }
-      
-      // console.log(this.props.issues)
-      // console.log(typeof(this.props.issues))
-      // for (var i=0; i<this.props.issues.length; i++){
-      //   row = this.props.issues[i]
-      //   const new_list = []
-      //   new_list.append(row.id)
-      //   new_list.append(row.name)
-      //   new_list.append(row.phone)
-      //   new_list.append(row.created)
-      //   guestlist.append(row)
-      // }
-      // console.log(guestlist)
       return (
         //using map to parse obj and convert it into a table
         <div hidden={!this.props.isShow}>
@@ -436,8 +391,7 @@ class HomePage extends React.Component{
   
   const element = <HomePage />
   ReactDOM.render(element, document.getElementById('contents'));
-  //ReactDOM.render(home, document.getElementById('contents'));
-  
+
   
   
   
